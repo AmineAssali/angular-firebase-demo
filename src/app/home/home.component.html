@@ -1,0 +1,51 @@
+<div class="row container-fluid">
+    <div class="col-6 ">
+        
+        <select class="browser-default custom-select topSpace" [(ngModel)]="pay">
+            <option value="morocco" selected>Morocco</option>
+            <option value="tunisia">Tunisia</option>
+        </select>
+
+
+        <select class="browser-default custom-select topSpace" [(ngModel)]="operative" *ngIf="pay=='morocco'" (change)="selectPay()">
+            <option *ngFor="let item of moroccoOperative" value="{{item}}" selected>{{item}}</option>
+        </select>
+
+        <select class="browser-default custom-select topSpace" [(ngModel)]="operative" *ngIf="pay=='tunisia'">
+            <option *ngFor="let item of tunisiaOperative" value="{{item}}" selected>{{item}}</option>
+        </select>
+
+
+        <div class="form-group topSpace">
+            <input type="text" name="" id="" [(ngModel)]="balance">
+            <button type="button" class="btn btn-info" (click)="save()">Save</button>
+        </div>
+    </div>
+    <div class="col-6 container">
+        <div class="form-group">
+            <input class="search" type="text" name="" id="" [(ngModel)]="searchType" placeholder="Enter a type"
+                (keyup)="search()">
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">uid</th>
+                    <th scope="col">type</th>
+                    <th scope="col">balance</th>
+                    <th scope="col">date</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of refills">
+                <tr>
+                    <!-- <th scope="row">1</th> -->
+                    <td>{{item.payload.doc._E.$t.proto.mapValue.fields.uid.stringValue}}</td>
+                    <td>{{item.payload.doc._E.$t.proto.mapValue.fields.type.stringValue}}</td>
+                    <td>{{item.payload.doc._E.$t.proto.mapValue.fields.balance.integerValue}}</td>
+                    <td>{{item.payload.doc._E.$t.proto.mapValue.fields.date.timestampValue}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

@@ -1,0 +1,81 @@
+
+<div class="col-md-6 login-form-1 center" *ngIf="divName=='Login'">
+    <h3>Login Form </h3>
+    <form [formGroup]="userForm">
+
+        <div class="form-group">
+            <input class="form-control" placeholder="Your Email *" type="email" class="form-control"
+                formControlName="email"
+                [class.is-invalid]="userForm.get('email').invalid && userForm.get('email').touched">
+            <div *ngIf="(mail.invalid && mail.touched) || mail.dirty">
+                <small *ngIf="mail.errors?.required" class="text-danger">Primary email is required</small>
+                <small *ngIf="mail.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Your Password *" type="password" class="form-control"
+                formControlName="password"
+                [class.is-invalid]="userForm.get('password').invalid && userForm.get('password').touched">
+            <div *ngIf="(passwordPin.invalid && passwordPin.touched) || passwordPin.dirty">
+                <small *ngIf="passwordPin.errors?.required" class="text-danger">Password email is required</small>
+                <small *ngIf="passwordPin.errors?.minlength" class="text-danger">Password must cotains more than 6
+                    characters</small>
+                <small *ngIf="passwordPin.errors?.maxlength" class="text-danger">Password must cotains less than 15
+                    characters</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-dark" (click)="login()">Login</button>
+            <button class="btn btn-dark marginLeft" (click)="displayDiv('Register')">Register</button>
+        </div>
+    </form>
+
+</div>
+
+<div class="col-md-6 login-form-1 center" *ngIf="divName=='Register'">
+    <h3>Register Form </h3>
+    <form [formGroup]="userForm">
+
+        <div class="form-group">
+            <input class="form-control" placeholder="Full Name " type="text" class="form-control"
+                formControlName="fullname">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" placeholder="Phone " type="tel" class="form-control"
+                formControlName="phone">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" placeholder="Your Email *" type="email" class="form-control"
+                formControlName="email"
+                [class.is-invalid]="userForm.get('email').invalid && userForm.get('email').touched">
+            <div *ngIf="(mail.invalid && mail.touched) || mail.dirty">
+                <small *ngIf="mail.errors?.required" class="text-danger">Primary email is required</small>
+                <small *ngIf="mail.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Your Password *" type="password" class="form-control"
+                formControlName="password"
+                [class.is-invalid]="userForm.get('password').invalid && userForm.get('password').touched">
+            <div *ngIf="(passwordPin.invalid && passwordPin.touched) || passwordPin.dirty">
+                <small *ngIf="passwordPin.errors?.required" class="text-danger">Password email is required</small>
+                <small *ngIf="passwordPin.errors?.minlength" class="text-danger">Password must cotains more than 6
+                    characters</small>
+                <small *ngIf="passwordPin.errors?.maxlength" class="text-danger">Password must cotains less than 15
+                    characters</small>
+            </div>
+        </div>
+
+        <div class="">
+            <button class="btn btn-dark" (click)="signup()">Register</button>
+            <button class="btn btn-dark marginLeft" (click)="displayDiv('Login')">Login</button>
+        </div>
+    </form>
+
+
+</div>
